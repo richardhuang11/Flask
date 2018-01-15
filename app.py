@@ -1,9 +1,8 @@
 # import the Flask class from the flask module
 from flask import Flask, render_template, redirect, \
     url_for, request, session, flash
-from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
-# import sqlite3
+from flask.ext.sqlalchemy import SQLAlchemy
 
 # create the application object
 app = Flask(__name__)
@@ -12,10 +11,12 @@ app = Flask(__name__)
 import os
 app.config.from_object(os.environ['APP_SETTINGS'])
 
-#create the sqlalchemy object
+# create the sqlalchemy object
 db = SQLAlchemy(app)
 
+# import db schema
 from models import *
+
 
 # login required decorator
 def login_required(f):
